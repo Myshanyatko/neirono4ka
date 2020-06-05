@@ -10,3 +10,6 @@ data.normalize(imagenet_stats)
 
 print(data.classes)
 data.show_batch(rows=3, figsize=(7,8))
+data.c, len(data.train_ds), len(data.valid_ds)
+learn = create_cnn(data, models.resnet34, metrics=error_rate)
+learn.fit_one_cycle(5)
