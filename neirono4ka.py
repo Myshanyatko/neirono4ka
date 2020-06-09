@@ -16,6 +16,13 @@ learn = create_cnn(data, models.resnet34, metrics=error_rate)
 learn.fit_one_cycle(10, callbacks=[EarlyStoppingCallback(learn, patience=2)])
 learn.recorder.plot_losses()
 learn.recorder.plot()
+learn.lr_find()
+learn.recorder.plot()
+learn.fit_one_cycle(5, max_lr=slice(1e-3,1e-2))
+learn.recorder.plot_losses()
+learn.unfreeze()
+learn.fit_one_cycle(5, max_lr=slice(1e-8,1e-6))
+learn.recorder.plot_losses()
 
 
 #learn.save('stage-1')
